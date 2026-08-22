@@ -1,8 +1,7 @@
 const Cliente = require('./Cliente');
-
-/**
- * Cliente não cadastrado, criado sob demanda pela placa.
- * Não é gerenciado por CadastroClientes.
+/*
+    Cliente não cadastrado, criado sob demanda pela placa.
+    Não é gerenciado por CadastroClientes.
  */
 class ClienteAvulso extends Cliente {
   static VALOR_HORA = 8;
@@ -18,11 +17,11 @@ class ClienteAvulso extends Cliente {
     this.placa = placa;
     this.placas.add(placa);
   }
-
   /**
-   * Avulso tem uma única placa (a que originou a instância).
+    Avulso tem uma única placa (a que originou a instância).
    * @param {string} placa
    */
+
   adicionarPlaca(placa) {
     if (this.placas.size >= 1) {
       throw new Error('cliente avulso já possui placa associada');
@@ -30,11 +29,11 @@ class ClienteAvulso extends Cliente {
     this.placa = placa;
     this.placas.add(placa);
   }
-
   /**
-   * ≤ 6h sem cruzar meia-noite: hora iniciada conta cheia.
-   * > 6h ou cruzou meia-noite: diária × dias de calendário tocados.
-   * Se `descontoAplicavel` for informado, aplica `.aplicar(valorBruto)`.
+    <= 6h sem cruzar meia-noite: hora iniciada conta cheia.
+    > 6h ou cruzou meia-noite: diária × dias de calendário tocados.
+    Se (descontoAplicavel) for informado, aplica (.aplicar(valorBruto)) 
+   
    * @param {Date} entrada
    * @param {Date} saida
    * @param {{ aplicar: (valorBase: number) => number }} [descontoAplicavel]

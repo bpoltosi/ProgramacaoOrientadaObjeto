@@ -1,7 +1,8 @@
-/**
- * Registro de uma permanência. A identidade do cliente é resolvida pela placa
- * em tempo de execução — não há clienteId neste ticket.
+/*
+    Registro de uma permanência.
+    A identidade do cliente é resolvida pela placa
  */
+
 class TicketEstacionamento {
   /**
    * @param {string} placa
@@ -26,10 +27,10 @@ class TicketEstacionamento {
     this.valorPago = null;
   }
 
-  /**
-   * Preenche os campos de saída de uma vez.
-   * `valorDevido` é calculado internamente como custoOriginal − valorDesconto.
-   * @param {{ dataHoraSaida: Date, custoOriginal: number, descontoId?: string, valorDesconto?: number, valorPago: number }} dados
+  /*
+    Preenche os campos de saída de uma vez.
+    (valorDevido) é calculado internamente como custoOriginal − valorDesconto.
+    @param {{ dataHoraSaida: Date, custoOriginal: number, descontoId?: string, valorDesconto?: number, valorPago: number }} dados
    */
   fecharSaida({ dataHoraSaida, custoOriginal, descontoId, valorDesconto, valorPago }) {
     this.dataHoraSaida = dataHoraSaida;
@@ -40,7 +41,7 @@ class TicketEstacionamento {
     this.valorPago = valorPago;
   }
 
-  /**
+  /*
    * @returns {boolean}
    */
   estaAberto() {

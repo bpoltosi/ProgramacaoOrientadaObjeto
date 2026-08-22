@@ -2,9 +2,6 @@ const CadastroClientes = require('./clientes/CadastroClientes');
 const RegistroDeEntradas_E_Saidas = require('./estacionamento/RegistroDeEntradas_E_Saidas');
 const RelatoriosGerenciais = require('./relatorios/RelatoriosGerenciais');
 
-/**
- * Facade do sistema. Sem I/O — a interface fica na Fase 2 / main.js.
- */
 class App {
   constructor() {
     this.cadastroClientes = new CadastroClientes();
@@ -19,6 +16,7 @@ class App {
    * @param {string} placa
    * @returns {import('./estacionamento/TicketEstacionamento')}
    */
+
   autorizarEntrada(placa) {
     return this.registroDeEntradasESaidas.autorizarEntrada(placa);
   }
@@ -28,6 +26,7 @@ class App {
    * @param {{ pagamentoRecusado?: boolean }} [opcoes]
    * @returns {import('./estacionamento/TicketEstacionamento')}
    */
+
   processarSaida(placa, opcoes) {
     return this.registroDeEntradasESaidas.processarSaida(placa, opcoes);
   }
@@ -35,6 +34,7 @@ class App {
   /**
    * @param {import('./clientes/Cliente')} cliente
    */
+
   cadastrarCliente(cliente) {
     return this.cadastroClientes.cadastrarCliente(cliente);
   }
@@ -43,6 +43,7 @@ class App {
    * @param {string} documento
    * @param {string} placa
    */
+
   registrarPlaca(documento, placa) {
     return this.cadastroClientes.registrarPlaca(documento, placa);
   }

@@ -1,8 +1,8 @@
 const Desconto = require('./Desconto');
 
-/**
- * 20% de desconto para avulso com 3 ou mais usos nos últimos 5 dias corridos.
- */
+/*
+    20% de desconto para avulso com 3 ou mais usos nos últimos 5 dias corridos.
+*/
 class DescontoClienteFrequente extends Desconto {
   constructor() {
     super('ClienteFrequente');

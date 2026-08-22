@@ -1,26 +1,21 @@
-# Sistema de Controle de Estacionamento — Fase 1
+Sistema de Controle de Estacionamento — Fase 1
 
-Núcleo funcional em JavaScript (Node.js, CommonJS): cadastro de clientes, entrada/saída, cobrança por tipo de cliente e desconto de cliente frequente. Sem persistência e sem interface gráfica nesta fase.
+Núcleo funcional em JavaScript (Node.js, CommonJS): cadastro de clientes, entrada/saída, cobrança por tipo de cliente e desconto de cliente frequente. 
 
-## Pré-requisitos
-
+Pré-requisitos
 - [Node.js](https://nodejs.org/) (qualquer versão LTS recente)
 
 Não há dependências de pacote: não é necessário `npm install`.
 
-## Como rodar
-
-Na pasta do projeto:
-
-```bash
+Como rodar?
+Na pasta do projeto executar o comando:
 node main.js
-```
+
 
 O script demonstra cadastro, entradas, saídas, regras de bloqueio e o desconto de cliente frequente.
 
-## Estrutura
+Estrutura
 
-```
 fase1/
   main.js
   README.md
@@ -41,4 +36,3 @@ fase1/
       TicketEstacionamento.js
     relatorios/
       RelatoriosGerenciais.js
-```

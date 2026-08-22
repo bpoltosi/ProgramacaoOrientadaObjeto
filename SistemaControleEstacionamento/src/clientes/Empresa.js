@@ -1,13 +1,16 @@
 const Cliente = require('./Cliente');
 
-/**
- * Cliente empresa: placas ilimitadas, cobrança por diária.
- * Inadimplência bloqueia toda a frota.
+/*
+    Cliente empresa: placas ilimitadas, cobrança por diária.
+    Inadimplência bloqueia toda a frota.
  */
+
 class Empresa extends Cliente {
-  /** Valor da diária (placeholder). */
+
+    //Valor da diária (placeholder).
   static VALOR_DIARIA = 80;
-  /** Multa por cada dia extra após cruzar meia-noite (placeholder). */
+
+    //Multa por cada dia extra após cruzar meia-noite (placeholder).
   static VALOR_MULTA_POR_DIA_EXTRA = 40;
 
   /**
@@ -38,24 +41,20 @@ class Empresa extends Cliente {
     this.saldoDevedor += valor;
   }
 
-  /**
-   * Marca a empresa como inadimplente (bloqueia a frota).
-   */
+    //Marca a empresa como inadimplente (bloqueia a frota).
   marcarInadimplente() {
     this.inadimplente = true;
   }
 
-  /**
-   * Quita o boleto, zera o saldo devedor e libera a frota.
-   */
+    //Quita o boleto, zera o saldo devedor e libera a frota.
   quitarBoleto() {
     this.inadimplente = false;
     this.saldoDevedor = 0;
   }
 
   /**
-   * Diária + multa × quantas meias-noites o intervalo cruzou.
-   * Mesmo dia: só a diária. Cada meia-noite cruzada gera um dia extra de multa.
+    Diária + multa × quantas meias-noites o intervalo cruzou.
+    Mesmo dia: só a diária. Cada meia-noite cruzada gera um dia extra de multa.
    * @param {Date} entrada
    * @param {Date} saida
    * @returns {number}

@@ -1,10 +1,10 @@
 const Cliente = require('./Cliente');
 
-/**
- * Cliente professor: até 2 placas, entrada gratuita.
- * Apenas um veículo do mesmo professor pode estar estacionado por vez.
- * `placaAtualEstacionada` é atualizada por RegistroDeEntradas_E_Saidas.
- */
+/*
+    Cliente professor: até 2 placas, entrada gratuita.
+    Apenas um veículo do mesmo professor pode estar estacionado por vez.
+    (placaAtualEstacionada) é atualizada por RegistroDeEntradas_E_Saidas.
+*/
 class Professor extends Cliente {
   /**
    * @param {string} documento
@@ -17,7 +17,7 @@ class Professor extends Cliente {
   }
 
   /**
-   * Professor pode cadastrar no máximo duas placas.
+    Professor pode cadastrar no máximo duas placas.
    * @param {string} placa
    */
   adicionarPlaca(placa) {
@@ -28,16 +28,17 @@ class Professor extends Cliente {
   }
 
   /**
-   * Permanência gratuita.
+    Permanência gratuita.
    * @returns {number}
    */
+
   calcularCusto() {
     return 0;
   }
 
   /**
-   * Autoriza apenas se nenhum veículo deste professor estiver dentro.
-   * O parâmetro contexto é ignorado: o estado já está em placaAtualEstacionada.
+    Autoriza apenas se nenhum veículo deste professor estiver dentro.
+    O parâmetro contexto é ignorado: o estado já está em placaAtualEstacionada.
    * @param {object} [contexto]
    * @returns {boolean}
    */

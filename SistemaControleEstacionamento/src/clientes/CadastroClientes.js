@@ -1,10 +1,10 @@
-/**
- * Cadastro de clientes vinculados (Estudante, Professor, Empresa).
- * ClienteAvulso nunca é gerenciado aqui.
- *
- * Observação: listarBloqueados() chama podeAutorizarEntrada() sem argumentos.
- * Professor usa placaAtualEstacionada (conflito de vaga), não inadimplência;
- * pode aparecer na lista enquanto um veículo seu estiver dentro.
+/*
+    Cadastro de clientes vinculados (Estudante, Professor, Empresa).
+    ClienteAvulso nunca é gerenciado aqui (apenas cadastrads).
+
+    Observação: listarBloqueados() chama podeAutorizarEntrada() sem argumentos.
+    Professor usa placaAtualEstacionada (conflito de vaga), não inadimplência;
+    pode aparecer na lista enquanto um veículo seu estiver dentro.
  */
 class CadastroClientes {
   constructor() {
@@ -17,9 +17,10 @@ class CadastroClientes {
   }
 
   /**
-   * Quantidade de clientes cadastrados.
+    Quantidade de clientes cadastrados.
    * @returns {number}
    */
+
   get totalClientes() {
     return this.clientesPorDocumento.size;
   }
@@ -27,6 +28,7 @@ class CadastroClientes {
   /**
    * @param {import('./Cliente')} cliente
    */
+
   cadastrarCliente(cliente) {
     if (cliente.documento == null) {
       throw new Error('cliente cadastrado precisa de documento');
@@ -38,10 +40,11 @@ class CadastroClientes {
   }
 
   /**
-   * Valida unicidade global da placa e depois delega o limite ao subtipo.
+    Valida unicidade global da placa e depois delega o limite ao subtipo.
    * @param {string} documento
    * @param {string} placa
    */
+
   registrarPlaca(documento, placa) {
     const cliente = this.clientesPorDocumento.get(documento);
     if (!cliente) {
@@ -59,15 +62,17 @@ class CadastroClientes {
    * @param {string} documento
    * @returns {import('./Cliente')|null}
    */
+
   buscarClientePorDocumento(documento) {
     return this.clientesPorDocumento.get(documento) ?? null;
   }
 
   /**
-   * `null` indica placa de cliente avulso.
+    (null) indica placa de cliente avulso.
    * @param {string} placa
    * @returns {import('./Cliente')|null}
    */
+
   buscarClientePorPlaca(placa) {
     return this.mapaPlacaParaCliente.get(placa) ?? null;
   }
@@ -75,6 +80,7 @@ class CadastroClientes {
   /**
    * @returns {import('./Cliente')[]}
    */
+
   listarClientes() {
     return Array.from(this.clientesPorDocumento.values());
   }
@@ -82,6 +88,7 @@ class CadastroClientes {
   /**
    * @returns {import('./Cliente')[]}
    */
+
   listarBloqueados() {
     return this.listarClientes().filter((cliente) => !cliente.podeAutorizarEntrada());
   }

@@ -1,11 +1,12 @@
 const Cliente = require('./Cliente');
 
-/**
- * Cliente estudante: uma placa, cobrança por ingresso (pré-pago).
- * Saldo negativo não impede a saída, mas bloqueia novas entradas.
+/*
+    Cliente estudante: uma placa, cobrança por ingresso (pré-pago).
+    Saldo negativo não impede a saída, mas bloqueia novas entradas.
  */
 class Estudante extends Cliente {
-  /** Valor de um ingresso (placeholder, fácil de ajustar). */
+
+  //Valor de um ingresso
   static CUSTO_FIXO_POR_INGRESSO = 15;
 
   /**
@@ -20,7 +21,7 @@ class Estudante extends Cliente {
   }
 
   /**
-   * Estudante pode cadastrar no máximo uma placa.
+    Estudante pode cadastrar no máximo uma placa.
    * @param {string} placa
    */
   adicionarPlaca(placa) {
@@ -31,7 +32,7 @@ class Estudante extends Cliente {
   }
 
   /**
-   * Soma crédito ao saldo.
+    Soma crédito ao saldo
    * @param {number} valor
    */
   carregarSaldo(valor) {
@@ -39,7 +40,7 @@ class Estudante extends Cliente {
   }
 
   /**
-   * Subtrai do saldo. Pode ficar negativo.
+    Subtrai do saldo. Pode ficar negativo
    * @param {number} valor
    */
   debitar(valor) {
@@ -47,8 +48,8 @@ class Estudante extends Cliente {
   }
 
   /**
-   * Cobra um ingresso por dia de calendário tocado (local).
-   * Saída após meia-noite gera ingresso extra.
+    Cobra um ingresso por dia de calendário tocado (local).
+    Saída após meia-noite gera ingresso extra.
    * @param {Date} entrada
    * @param {Date} saida
    * @returns {number}
@@ -67,8 +68,8 @@ class Estudante extends Cliente {
 }
 
 /**
- * Quantidade de dias de calendário locais abrangidos pelo intervalo [entrada, saida].
- * Mesmo dia = 1; cada meia-noite cruzada incrementa 1.
+    Quantidade de dias de calendário locais abrangidos pelo intervalo [entrada, saida].
+    Mesmo dia = 1; cada meia-noite cruzada incrementa 1.
  * @param {Date} entrada
  * @param {Date} saida
  * @returns {number}

@@ -1,12 +1,15 @@
 /**
- * Classe abstrata base de cliente do estacionamento.
- * Não deve ser instanciada diretamente.
+    Classe abstrata base de cliente do estacionamento.
+    Não deve ser instanciada diretamente.
  */
+
 class Cliente {
+
   /**
-   * @param {string|null} documento CPF ou CNPJ
+   * @param {string|null} documento  (CPF ou CNPJ)
    * @param {string|null} nome
    */
+
   constructor(documento, nome) {
     if (new.target === Cliente) {
       throw new Error('Cliente é abstrata e não pode ser instanciada diretamente');
@@ -21,7 +24,7 @@ class Cliente {
   }
 
   /**
-   * Adiciona uma placa respeitando o limite do subtipo.
+    Adiciona uma placa respeitando o limite do subtipo.
    * @param {string} placa
    * @abstract
    */
@@ -30,30 +33,33 @@ class Cliente {
   }
 
   /**
-   * Remove a placa do conjunto deste cliente.
+    Remove a placa do conjunto deste cliente.
    * @param {string} placa
    */
+
   removerPlaca(placa) {
     this.placas.delete(placa);
   }
 
   /**
-   * Calcula o custo da permanência.
+    Calcula o custo da permanência.
    * @param {Date} entrada
    * @param {Date} saida
    * @returns {number}
    * @abstract
    */
+
   calcularCusto(entrada, saida) {
     throw new Error('calcularCusto deve ser implementado pela subclasse');
   }
 
   /**
-   * Indica se uma nova entrada pode ser autorizada.
+    Indica se uma nova entrada pode ser autorizada.
    * @param {object} [contexto]
    * @returns {boolean}
    * @abstract
    */
+
   podeAutorizarEntrada(contexto) {
     throw new Error('podeAutorizarEntrada deve ser implementado pela subclasse');
   }

@@ -1,7 +1,7 @@
-/**
- * Estratégia abstrata de desconto.
- * Novos tipos devem estender esta classe sem alterar ClienteAvulso.
+/*
+    Estratégia abstrata de desconto.
  */
+
 class Desconto {
   /**
    * @param {string} identificador
@@ -21,7 +21,7 @@ class Desconto {
    * @abstract
    */
   aplicavel(historicoTicketsDaPlaca, dataAtual) {
-    throw new Error('aplicavel deve ser implementado pela subclasse');
+    throw new Error('Aplicavel deve ser implementado pela subclasse');
   }
 
   /**

@@ -2,9 +2,9 @@ const TicketEstacionamento = require('./TicketEstacionamento');
 const ClienteAvulso = require('../clientes/ClienteAvulso');
 const DescontoClienteFrequente = require('../descontos/DescontoClienteFrequente');
 
-/**
- * Orquestra entradas, saídas, capacidade, bloqueio de avulsos e descontos.
- */
+/*
+    Orquestra entradas, saídas, capacidade, bloqueio de avulsos e descontos.
+*/
 class RegistroDeEntradas_E_Saidas {
   static CAPACIDADE_TOTAL = 9000;
 
@@ -112,7 +112,7 @@ class RegistroDeEntradas_E_Saidas {
         new Date(0),
         dataHoraSaida
       );
-      // Inclui a permanência atual para que a 3ª visita já possa receber o desconto.
+      // Inclui a permanencia atual para que a 3° visita possa receber o desconto.
       const historicoParaDesconto = [...historico, ticket];
       const descontoEncontrado = this.descontosDisponiveis.find((desconto) =>
         desconto.aplicavel(historicoParaDesconto, dataHoraSaida)
