@@ -6,6 +6,7 @@
     Professor usa placaAtualEstacionada (conflito de vaga), não inadimplência;
     pode aparecer na lista enquanto um veículo seu estiver dentro.
  */
+
 class CadastroClientes {
   constructor() {
     /** @type {Map<string, import('./Cliente')>} */
@@ -61,14 +62,14 @@ class CadastroClientes {
   /**
    * @param {string} documento
    * @returns {import('./Cliente')|null}
-   */
+  */
 
   buscarClientePorDocumento(documento) {
     return this.clientesPorDocumento.get(documento) ?? null;
   }
 
   /**
-    (null) indica placa de cliente avulso.
+      (null) indica placa de cliente avulso.
    * @param {string} placa
    * @returns {import('./Cliente')|null}
    */

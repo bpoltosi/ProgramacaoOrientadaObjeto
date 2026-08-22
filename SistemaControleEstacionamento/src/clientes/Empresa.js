@@ -3,14 +3,14 @@ const Cliente = require('./Cliente');
 /*
     Cliente empresa: placas ilimitadas, cobrança por diária.
     Inadimplência bloqueia toda a frota.
- */
+*/
 
 class Empresa extends Cliente {
 
-    //Valor da diária (placeholder).
+  //Valor da diária (placeholder).
   static VALOR_DIARIA = 80;
 
-    //Multa por cada dia extra após cruzar meia-noite (placeholder).
+  //Multa por cada dia extra após cruzar meia-noite (placeholder).
   static VALOR_MULTA_POR_DIA_EXTRA = 40;
 
   /**
@@ -41,12 +41,12 @@ class Empresa extends Cliente {
     this.saldoDevedor += valor;
   }
 
-    //Marca a empresa como inadimplente (bloqueia a frota).
+  //Marca a empresa como inadimplente (bloqueia a frota).
   marcarInadimplente() {
     this.inadimplente = true;
   }
 
-    //Quita o boleto, zera o saldo devedor e libera a frota.
+  //Quita o boleto, zera o saldo devedor e libera a frota.
   quitarBoleto() {
     this.inadimplente = false;
     this.saldoDevedor = 0;
@@ -59,6 +59,7 @@ class Empresa extends Cliente {
    * @param {Date} saida
    * @returns {number}
    */
+
   calcularCusto(entrada, saida) {
     const meiasNoitesCruzadas = Math.max(0, diasCalendarioTocados(entrada, saida) - 1);
     return Empresa.VALOR_DIARIA + Empresa.VALOR_MULTA_POR_DIA_EXTRA * meiasNoitesCruzadas;
@@ -67,6 +68,7 @@ class Empresa extends Cliente {
   /**
    * @returns {boolean}
    */
+
   podeAutorizarEntrada() {
     return !this.inadimplente;
   }
@@ -77,6 +79,7 @@ class Empresa extends Cliente {
  * @param {Date} saida
  * @returns {number}
  */
+
 function diasCalendarioTocados(entrada, saida) {
   const inicio = new Date(entrada.getFullYear(), entrada.getMonth(), entrada.getDate());
   const fim = new Date(saida.getFullYear(), saida.getMonth(), saida.getDate());

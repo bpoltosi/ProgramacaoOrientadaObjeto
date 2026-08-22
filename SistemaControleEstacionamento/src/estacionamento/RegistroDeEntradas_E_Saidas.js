@@ -3,14 +3,15 @@ const ClienteAvulso = require('../clientes/ClienteAvulso');
 const DescontoClienteFrequente = require('../descontos/DescontoClienteFrequente');
 
 /*
-    Orquestra entradas, saídas, capacidade, bloqueio de avulsos e descontos.
+  Orquestra entradas, saídas, capacidade, bloqueio de avulsos e descontos.
 */
 class RegistroDeEntradas_E_Saidas {
   static CAPACIDADE_TOTAL = 9000;
 
   /**
    * @param {import('../clientes/CadastroClientes')} cadastroClientes
-   */
+  */
+
   constructor(cadastroClientes) {
     this.cadastroClientes = cadastroClientes;
     /** @type {import('../descontos/Desconto')[]} */
@@ -25,7 +26,8 @@ class RegistroDeEntradas_E_Saidas {
 
   /**
    * @returns {boolean}
-   */
+  */
+
   possuiVagaDisponivel() {
     return this.ticketsAbertos.size < RegistroDeEntradas_E_Saidas.CAPACIDADE_TOTAL;
   }
@@ -33,7 +35,8 @@ class RegistroDeEntradas_E_Saidas {
   /**
    * @param {string} placa
    * @returns {boolean}
-   */
+  */
+
   veiculoEstaDentro(placa) {
     return this.ticketsAbertos.has(placa);
   }
@@ -41,7 +44,8 @@ class RegistroDeEntradas_E_Saidas {
   /**
    * @param {string} placa
    * @returns {TicketEstacionamento}
-   */
+  */
+
   autorizarEntrada(placa) {
     if (this.placasBloqueadas.has(placa)) {
       throw new Error('placa bloqueada');
@@ -69,7 +73,6 @@ class RegistroDeEntradas_E_Saidas {
     if (cliente && 'placaAtualEstacionada' in cliente) {
       cliente.placaAtualEstacionada = placa;
     }
-
     return ticket;
   }
 
@@ -77,7 +80,8 @@ class RegistroDeEntradas_E_Saidas {
    * @param {string} placa
    * @param {{ pagamentoRecusado?: boolean }} [opcoes]
    * @returns {TicketEstacionamento}
-   */
+  */
+
   processarSaida(placa, opcoes = {}) {
     if (!this.veiculoEstaDentro(placa)) {
       throw new Error('veículo não está registrado como dentro');
@@ -112,7 +116,8 @@ class RegistroDeEntradas_E_Saidas {
         new Date(0),
         dataHoraSaida
       );
-      // Inclui a permanencia atual para que a 3° visita possa receber o desconto.
+
+      // Inclui a permanencia atual para que a 3 visita possa receber o desconto.
       const historicoParaDesconto = [...historico, ticket];
       const descontoEncontrado = this.descontosDisponiveis.find((desconto) =>
         desconto.aplicavel(historicoParaDesconto, dataHoraSaida)
@@ -124,6 +129,7 @@ class RegistroDeEntradas_E_Saidas {
         dataHoraSaida,
         descontoEncontrado ?? undefined
       );
+
       custoOriginal = avulso.calcularCusto(ticket.dataHoraEntrada, dataHoraSaida);
       valorDesconto = custoOriginal - valorComDesconto;
       descontoId = descontoEncontrado ? descontoEncontrado.identificador : 'nenhum';
@@ -149,7 +155,6 @@ class RegistroDeEntradas_E_Saidas {
       this.historicoPorPlaca.set(placa, []);
     }
     this.historicoPorPlaca.get(placa).push(ticket);
-
     return ticket;
   }
 
@@ -158,7 +163,8 @@ class RegistroDeEntradas_E_Saidas {
    * @param {Date} inicio
    * @param {Date} fim
    * @returns {TicketEstacionamento[]}
-   */
+  */
+ 
   buscarTicketsPorPlacaEPeriodo(placa, inicio, fim) {
     const historico = this.historicoPorPlaca.get(placa) ?? [];
     return historico.filter(

@@ -2,14 +2,15 @@ const Cliente = require('./Cliente');
 /*
     Cliente não cadastrado, criado sob demanda pela placa.
     Não é gerenciado por CadastroClientes.
- */
+*/
+
 class ClienteAvulso extends Cliente {
   static VALOR_HORA = 8;
   static LIMITE_HORAS = 6;
   static VALOR_DIARIA = 60;
 
   /**
-   * @param {string} placa identificador real do avulso
+   * @param {string} placa (identificador real do avulso)
    */
   constructor(placa) {
     super(null, null);
@@ -18,7 +19,7 @@ class ClienteAvulso extends Cliente {
     this.placas.add(placa);
   }
   /**
-    Avulso tem uma única placa (a que originou a instância).
+      Avulso tem uma única placa (a que originou a instância).
    * @param {string} placa
    */
 
@@ -39,6 +40,7 @@ class ClienteAvulso extends Cliente {
    * @param {{ aplicar: (valorBase: number) => number }} [descontoAplicavel]
    * @returns {number}
    */
+
   calcularCusto(entrada, saida, descontoAplicavel) {
     const valorBruto = this._calcularValorBruto(entrada, saida);
     if (descontoAplicavel && typeof descontoAplicavel.aplicar === 'function') {
@@ -48,9 +50,10 @@ class ClienteAvulso extends Cliente {
   }
 
   /**
-   * Bloqueio por recusa de pagamento é responsabilidade do registro de entradas.
+      Bloqueio por recusa de pagamento é responsabilidade do registro de entradas.
    * @returns {boolean}
    */
+
   podeAutorizarEntrada() {
     return true;
   }
@@ -61,16 +64,16 @@ class ClienteAvulso extends Cliente {
    * @returns {number}
    * @private
    */
+
   _calcularValorBruto(entrada, saida) {
     const cruzouMeiaNoite = !mesmoDiaLocal(entrada, saida);
     const horasDecimais = (saida.getTime() - entrada.getTime()) / (60 * 60 * 1000);
-    // Permanência instantânea ainda inicia uma hora de cobrança.
+    // Permanência instantânea ainda inicia uma hora de cobrança
     const horasIniciadas = horasDecimais <= 0 ? 1 : Math.ceil(horasDecimais);
 
     if (!cruzouMeiaNoite && horasDecimais <= ClienteAvulso.LIMITE_HORAS) {
       return ClienteAvulso.VALOR_HORA * horasIniciadas;
     }
-
     return ClienteAvulso.VALOR_DIARIA * diasCalendarioTocados(entrada, saida);
   }
 }
@@ -80,6 +83,7 @@ class ClienteAvulso extends Cliente {
  * @param {Date} b
  * @returns {boolean}
  */
+
 function mesmoDiaLocal(a, b) {
   return (
     a.getFullYear() === b.getFullYear() &&
@@ -93,6 +97,7 @@ function mesmoDiaLocal(a, b) {
  * @param {Date} saida
  * @returns {number}
  */
+
 function diasCalendarioTocados(entrada, saida) {
   const inicio = new Date(entrada.getFullYear(), entrada.getMonth(), entrada.getDate());
   const fim = new Date(saida.getFullYear(), saida.getMonth(), saida.getDate());

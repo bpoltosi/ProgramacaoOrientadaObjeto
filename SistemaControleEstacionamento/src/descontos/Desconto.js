@@ -1,11 +1,13 @@
 /*
     Estratégia abstrata de desconto.
- */
+*/
 
 class Desconto {
+
   /**
    * @param {string} identificador
-   */
+  */
+
   constructor(identificador) {
     if (new.target === Desconto) {
       throw new Error('Desconto é abstrata e não pode ser instanciada diretamente');
@@ -19,7 +21,8 @@ class Desconto {
    * @param {Date} dataAtual
    * @returns {boolean}
    * @abstract
-   */
+  */
+
   aplicavel(historicoTicketsDaPlaca, dataAtual) {
     throw new Error('Aplicavel deve ser implementado pela subclasse');
   }
@@ -28,7 +31,8 @@ class Desconto {
    * @param {number} valorBase
    * @returns {number}
    * @abstract
-   */
+  */
+
   aplicar(valorBase) {
     throw new Error('aplicar deve ser implementado pela subclasse');
   }

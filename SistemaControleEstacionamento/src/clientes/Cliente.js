@@ -1,7 +1,7 @@
-/**
+/*
     Classe abstrata base de cliente do estacionamento.
     Não deve ser instanciada diretamente.
- */
+*/
 
 class Cliente {
 
@@ -24,16 +24,17 @@ class Cliente {
   }
 
   /**
-    Adiciona uma placa respeitando o limite do subtipo.
+      Adiciona uma placa respeitando o limite do subtipo.
    * @param {string} placa
    * @abstract
    */
+
   adicionarPlaca(placa) {
     throw new Error('adicionarPlaca deve ser implementado pela subclasse');
   }
 
   /**
-    Remove a placa do conjunto deste cliente.
+      Remove a placa do conjunto deste cliente.
    * @param {string} placa
    */
 
@@ -42,7 +43,7 @@ class Cliente {
   }
 
   /**
-    Calcula o custo da permanência.
+      Calcula o custo da permanência.
    * @param {Date} entrada
    * @param {Date} saida
    * @returns {number}
@@ -54,7 +55,7 @@ class Cliente {
   }
 
   /**
-    Indica se uma nova entrada pode ser autorizada.
+      Indica se uma nova entrada pode ser autorizada.
    * @param {object} [contexto]
    * @returns {boolean}
    * @abstract
